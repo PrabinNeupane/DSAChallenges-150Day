@@ -1,6 +1,4 @@
-package org.example.dsachallenges150days.challenges.day2;
-
-import java.io.FilterOutputStream;
+package org.example.dsachallenges150days.challenges.arrays.day2;
 
 class MedianOfTwoSortedArray {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

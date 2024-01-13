@@ -1,4 +1,4 @@
-package org.example.dsachallenges150days.challenges.day1;
+package org.example.dsachallenges150days.challenges.arrays.day1;
 
 import java.util.HashMap;
 
