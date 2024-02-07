@@ -27,4 +27,16 @@ public class JavaSubstringComparision {
         }
         return smallest + "\n" + largest;
     }
+
+    public static int medianCalculate(int a, int b) {
+        int result;
+        if (a < b) {
+            result = a + (b - a) / 2;
+        } else {
+            result = a + (a - b) / 2;
+        }
+        return result;
+    }
+
 }
+
