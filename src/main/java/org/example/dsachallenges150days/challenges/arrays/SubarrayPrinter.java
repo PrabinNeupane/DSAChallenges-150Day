@@ -2,10 +2,12 @@ package org.example.dsachallenges150days.challenges.arrays;
 
 public class SubarrayPrinter {
     public static void printSubarrays(int[] arr) {
-        printSubarraysHelper(arr, 0, new int[arr.length], 0);
+        printSubArraysHelper(arr, 0,
+                new int[arr.length],
+                0);
     }
 
-    private static void printSubarraysHelper(int[] arr, int start, int[] subarr, int subLength) {
+    private static void printSubArraysHelper(int[] arr, int start, int[] subarr, int subLength) {
         if (start == arr.length) {
             if (subLength > 0) {
                 // Print the subarray
@@ -18,11 +20,11 @@ public class SubarrayPrinter {
         }
 
         // Exclude current element
-        printSubarraysHelper(arr, start + 1, subarr, subLength);
+        printSubArraysHelper(arr, start + 1, subarr, subLength);
 
         // Include current element
         subarr[subLength] = arr[start];
-        printSubarraysHelper(arr, start + 1, subarr, subLength + 1);
+        printSubArraysHelper(arr, start + 1, subarr, subLength + 1);
     }
 
     public static void main(String[] args) {
