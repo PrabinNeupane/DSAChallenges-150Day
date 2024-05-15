@@ -31,12 +31,12 @@ public class Solution {
             }
             monotonicStack.offerLast(num);
         }
-
-        int[] result = new int[monotonicStack.size()];
-        int index = monotonicStack.size() - 1;
-        while (!monotonicStack.isEmpty()) {
-            result[index--] = monotonicStack.pollLast();
-        }
-        return result;
+//        int[] result = new int[monotonicStack.size()];
+//        int index = monotonicStack.size() - 1;
+//        while (!monotonicStack.isEmpty()) {
+//            result[index--] = monotonicStack.pollLast();
+//        }
+//        return result;
+        return monotonicStack.stream().mapToInt(i -> i).toArray();
     }
 }
