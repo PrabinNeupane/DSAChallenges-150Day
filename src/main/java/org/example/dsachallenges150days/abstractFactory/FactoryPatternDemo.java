@@ -1,4 +1,4 @@
-package org.example.dsachallenges150days.FactoryMethod;
+package org.example.dsachallenges150days.abstractFactory;
 
 public class FactoryPatternDemo {
     public static void main(String[] args) {
