@@ -1,27 +1,35 @@
 #!/bin/bash
 
-# Check if the branch name is provided
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <branch_name>"
+# Self-execute permission
+if [ ! -x "$0" ]; then
+    chmod +x "$0"
+fi
+
+# Check if the commit message is provided
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <branch_name> <commit_msg>"
     exit 1
 fi
 
-# Assign the first argument to a variable
+# Assign the arguments to variables
 branch_name=$1
 commit_msg=$2
 
 # Ensure we're in a git repository
-if [ -z "$(git rev-parse --is-inside-work-tree)" ]; then
+if [ -z "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
     echo "Please run this script inside a Git repository."
     exit 1
 fi
+
+# Capture the current branch name
+current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # Add changes to the staging area
 git add .
 
 # Commit the changes
 echo "Committing changes..."
-git commit -m $"commit_msg"
+git commit -m "$commit_msg"
 
 # Push the commit to the remote repository
 echo "Pushing changes to the remote repository..."
@@ -39,4 +47,8 @@ git merge $branch_name
 # echo "Deleting $branch_name..."
 # git branch -d $branch_name
 
-echo "Merge completed successfully."
+# Switch back to the original branch
+echo "Returning to the previous branch $current_branch..."
+git checkout $current_branch
+
+echo "Merge completed successfully and returned to $current_branch."
