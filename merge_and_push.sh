@@ -43,6 +43,10 @@ git checkout main
 echo "Merging $branch_name into main..."
 git merge $branch_name
 
+# Push the updated main branch to the remote repository
+echo "Pushing the main branch to the remote repository..."
+git push origin main
+
 # Optional: Delete the local branch after merging
 # echo "Deleting $branch_name..."
 # git branch -d $branch_name
@@ -51,4 +55,4 @@ git merge $branch_name
 echo "Returning to the previous branch $current_branch..."
 git checkout $current_branch
 
-echo "Merge completed successfully and returned to $current_branch."
+echo "Merge and push completed successfully, and returned to $current_branch."
