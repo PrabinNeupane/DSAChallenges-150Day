@@ -6,14 +6,13 @@ if [ ! -x "$0" ]; then
 fi
 
 # Check if the commit message is provided
-if [ $# -lt 2 ]; then
-    echo "Usage: $0 <branch_name> <commit_msg>"
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <commit_msg>"
     exit 1
 fi
 
-# Assign the arguments to variables
-branch_name=$1
-commit_msg=$2
+# Assign the commit message to a variable
+commit_msg=$1
 
 # Ensure we're in a git repository
 if [ -z "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
@@ -22,7 +21,13 @@ if [ -z "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
 fi
 
 # Capture the current branch name
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# Ensure we're not already on the main branch
+if [ "$branch_name" = "main" ]; then
+    echo "You are already on the main branch. Please run this script from a feature branch."
+    exit 1
+fi
 
 # Add changes to the staging area
 git add .
@@ -39,6 +44,10 @@ git push origin $branch_name
 echo "Switching to the main branch..."
 git checkout main
 
+# Pull the latest changes in main
+echo "Pulling the latest changes in main..."
+git pull origin main
+
 # Merge the provided branch into main
 echo "Merging $branch_name into main..."
 git merge $branch_name
@@ -52,7 +61,7 @@ git push origin main
 # git branch -d $branch_name
 
 # Switch back to the original branch
-echo "Returning to the previous branch $current_branch..."
-git checkout $current_branch
+echo "Returning to the previous branch $branch_name..."
+git checkout $branch_name
 
-echo "Merge and push completed successfully, and returned to $current_branch."
+echo "Merge and push completed successfully, and returned to $branch_name."
