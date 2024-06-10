@@ -17,7 +17,7 @@ if [ -z "$(git rev-parse --is-inside-work-tree)" ]; then
 fi
 
 # Add changes to the staging area
-git add.
+git add .
 
 # Commit the changes
 echo "Committing changes..."
