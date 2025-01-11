@@ -1,4 +1,4 @@
-package org.example.dsachallenges150days;
+package org.example.dsachallenges150days.day70;
 
 public class TestHello {
     public static void main(String[] args) {

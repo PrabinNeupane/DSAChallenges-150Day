@@ -1,7 +1,6 @@
-package org.example.dsachallenges150days;
+package org.example.dsachallenges150days.day70;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ReverseWordInString {
     public static void main(String[] args) {

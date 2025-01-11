@@ -1,4 +1,4 @@
-package org.example.dsachallenges150days;
+package org.example.dsachallenges150days.day70;
 
 
 import java.util.ArrayDeque;
@@ -31,12 +31,6 @@ public class Solution {
             }
             monotonicStack.offerLast(num);
         }
-//        int[] result = new int[monotonicStack.size()];
-//        int index = monotonicStack.size() - 1;
-//        while (!monotonicStack.isEmpty()) {
-//            result[index--] = monotonicStack.pollLast();
-//        }
-//        return result;
         return monotonicStack.stream().mapToInt(i -> i).toArray();
     }
 }
