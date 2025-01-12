@@ -1,41 +1,36 @@
 package org.example.dsachallenges150days;
-import java.util.Arrays;
 
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1; // Pointer for the last valid element in nums1
+        int p2 = n - 1; // Pointer for the last element in nums2
+        int p = m + n - 1; // Pointer for the last position in nums1
 
-public class DayOneMergeSortedArray {
-    public int[] merge(int[] nums1, int m, int[] nums2, int n) {
-        int[] result = new int[m + n];
-        int i = 0, j = 0, k = 0;
-
-        // Merge the arrays until one is exhausted
-        while (i < m && j < n) {
-            if (nums1[i] <= nums2[j]) {
-                result[k++] = nums1[i++];
+        // Merge in reverse order
+        while (p1 >= 0 && p2 >= 0) {
+            if (nums1[p1] > nums2[p2]) {
+                nums1[p--] = nums1[p1--];
             } else {
-                result[k++] = nums2[j++];
+                nums1[p--] = nums2[p2--];
             }
         }
 
-        // Add remaining elements from nums1 (if any)
-        while (i < m) {
-            result[k++] = nums1[i++];
+        // If there are remaining elements in nums2, add them
+        while (p2 >= 0) {
+            nums1[p--] = nums2[p2--];
         }
-
-        // Add remaining elements from nums2 (if any)
-        while (j < n) {
-            result[k++] = nums2[j++];
+        // No need to handle nums1 since it's already in place
+        for (int element : nums1) {
+            System.out.print(p + " ");
         }
-
-        return result;
     }
 
     public static void main(String[] args) {
-        int[] nums1 = {1, 3, 5, 7, 9};
-        int[] nums2 = {2, 4, 6, 8, 10};
-        int m = nums1.length;
-        int n = nums2.length;
+        Solution solution = new Solution();
 
-        DayOneMergeSortedArray d = new DayOneMergeSortedArray();
-        Arrays.stream(d.merge(nums1, m, nums2, n)).forEach(System.out::println);
+        int[] nums1 = {1, 2, 3};
+        int[] nums2 = {4, 5, 6};
+        solution.merge(nums1, nums1.length, nums2, nums2.length);
     }
+
 }
