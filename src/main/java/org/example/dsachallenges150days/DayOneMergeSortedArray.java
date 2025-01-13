@@ -1,6 +1,6 @@
 package org.example.dsachallenges150days;
 
-class Solution {
+class DayOnrMergeSortedArray {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int p1 = m - 1; // Pointer for the last valid element in nums1
         int p2 = n - 1; // Pointer for the last element in nums2
@@ -26,7 +26,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        DayOnrMergeSortedArray solution = new DayOnrMergeSortedArray();
 
         int[] nums1 = {1, 2, 3};
         int[] nums2 = {4, 5, 6};
